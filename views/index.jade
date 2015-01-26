@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Indie Flower')
+    link(rel="stylesheet" href= "stylesheets/lightbox.css")
+    link(rel="stylesheet" href= "stylesheets/mycss.css")
+    script(src= "javascripts/jquery-2.1.1.js")
+    script(src= "javascripts/lightbox.js")
+
+  body
+    header
+      .container
+        h1.logo Anime
+        p.lead Anime pictures & images!
+      
+      form(method="post" action="api/photo" enctype="multipart/form-data")
+        input(type="file" name="fileUploaded")
+        input(type="submit")
+
+    .image-set
+      each image, index in images
+        .single-image
+          a(href='uploads/' + image.filename data-lightbox="roadtrip")
+            img(src='uploads/' + image.filename)
+    
+
+    footer
+      .container
+        p
+          a(href="http://www.yuigahame.com") Welcome to my Website
+          br
+          a(href="delete" style="color: grey; font-size: 20px") click here to delete image 

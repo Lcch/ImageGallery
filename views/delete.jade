@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Indie Flower')
+    link(rel="stylesheet" href="stylesheets/lightbox.css")
+    link(rel="stylesheet" href="stylesheets/mycss.css")
+    script(src="javascripts/jquery-2.1.1.js")
+    script(src="javascripts/lightbox.js")
+
+  body
+    header
+      .container
+        h1.logo Delete Image
+        p.lead Choose image to delete.
+        a(href= "/" class="lead") back to Gallery
+
+    form(method="post" action="api/delete")
+      .image-set
+        ul
+          each image, index in images
+            li
+              input(type="checkbox" name="delete" value=image.filename)
+              img(src='uploads/' + image.filename)
+              p #{image.filename}
+              p #{image.time}
+        input(type="submit" class="button")
+
+    footer
+      .container
+        p
+          a(href="http://www.yuigahame.com") Welcome to my Website
+ 
