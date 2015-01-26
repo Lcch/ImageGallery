@@ -10,48 +10,60 @@ router.get('/', function(req, res) {
 
 router.get('/anime', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('gallery', { title: 'Anime',
-                            images: images}); 
+    Post.filterCategory(images, 'anime', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('gallery', { title: 'Anime',
+                              images: filterImages}); 
+    });
   }); 
 });
 
 router.get('/scenery', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('gallery', { title: 'Scenery',
-                            images: images}); 
+    Post.filterCategory(images, 'scenery', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('gallery', { title: 'Scenery',
+                              images: filterImages}); 
+    });
   }); 
 });
 
 router.get('/daily', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('gallery', { title: 'Daily',
-                            images: images}); 
-  }); 
+    Post.filterCategory(images, 'daily', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('gallery', { title: 'Daily',
+                              images: filterImages}); 
+    });
+  });  
 });
 
 
 router.get('/anime/delete', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('delete', { title: 'Anime',
-                           images: images}); 
+    Post.filterCategory(images, 'anime', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('delete', { title: 'Anime',
+                              images: filterImages}); 
+    });
   }); 
 });
 router.get('/scenery/delete', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('delete', { title: 'Scenery',
-                           images: images}); 
+    Post.filterCategory(images, 'scenery', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('delete', { title: 'Scenery',
+                              images: filterImages}); 
+    });  
   }); 
 });
 router.get('/daily/delete', function(req, res) {
   Post.getAll(function(err, images) {
-    console.log(images);
-    res.render('delete', { title: 'Daily',
-                           images: images}); 
+    Post.filterCategory(images, 'daily', function(err, filterImages) {
+      console.log(filterImages);
+      res.render('delete', { title: 'Daily',
+                             images: filterImages}); 
+    });  
   }); 
 });
 

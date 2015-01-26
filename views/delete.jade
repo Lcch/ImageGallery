@@ -13,7 +13,7 @@ html
       .container
         h1.logo Delete Image
         p.lead Choose image to delete.
-        a(href= "/" class="lead") back to Gallery
+        a(href= "/#{title.toLowerCase()}" class="lead") back to Gallery
 
     form(method="post" action="/#{title.toLowerCase()}/api/delete")
       .image-set

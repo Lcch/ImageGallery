@@ -1,5 +1,5 @@
 module.exports = {
-  db: 'debt_image_test2',
+  db: 'debt_gallery_test_v1',
   host: 'localhost',
   port: '17026',
 };

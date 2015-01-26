@@ -1,14 +1,12 @@
 var mongodb = require('./db');
 
-function Post(filename, category, tag, time) {
+function Post(filename, category, tag, caption, description, time) {
   this.filename = filename;
   this.category = category;
   this.tag = tag;
-  if (time) {
-    this.time = time;
-  } else {
-    this.time = new Date();
-  }
+  this.caption = caption || "Image";
+  this.description = description || "image";
+  this.time = time || new Date();
 };
 
 module.exports = Post;
@@ -39,6 +37,8 @@ Post.prototype.save = function save(callback) {
     filename: this.filename,
     category: this.category,
     tag: this.tag,
+    caption: this.caption,
+    description: this.description,
     time: this.time
   };
 
@@ -62,7 +62,13 @@ Post.prototype.save = function save(callback) {
 };
 
 Post.filterCategory = function filterCategory(images, category, callback) {
-  callback(null, images);
+  var filterImages = [];
+  for (var i = 0; i != images.length; i++) {
+    if (images[i].category === category) {
+      filterImages.push(images[i]);
+    }
+  }
+  callback(null, filterImages);
 };
 
 Post.getAll = function getAll(callback) {
@@ -85,7 +91,10 @@ Post.getAll = function getAll(callback) {
         }
         var images = [];
         docs.forEach(function(doc, index) {
-          var image = new Post(doc.filename, doc.category, doc.tag, doc.time);
+          var image = new Post(doc.filename, doc.category,
+                               doc.tag, doc.caption,
+                               doc.description,
+                               doc.time);
           images.push(image);
         });
         callback(null, images);
