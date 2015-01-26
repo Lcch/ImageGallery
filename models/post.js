@@ -1,12 +1,9 @@
 var mongodb = require('./db');
 
-function Post(filename, tag, time) {
+function Post(filename, category, tag, time) {
   this.filename = filename;
-  if (tag) {
-    this.tag = "anime";
-  } else {
-    this.tag = tag;
-  }
+  this.category = category;
+  this.tag = tag;
   if (time) {
     this.time = time;
   } else {
@@ -40,6 +37,7 @@ Post.removeItem = function removeItem(filename, callback) {
 Post.prototype.save = function save(callback) {
   var post = {
     filename: this.filename,
+    category: this.category,
     tag: this.tag,
     time: this.time
   };
@@ -63,7 +61,11 @@ Post.prototype.save = function save(callback) {
   });
 };
 
-Post.get = function get(callback) {
+Post.filterCategory = function filterCategory(images, category, callback) {
+  callback(null, images);
+};
+
+Post.getAll = function getAll(callback) {
   mongodb.open(function(err, db) {
     if (err) {
       console.log(err);
@@ -83,7 +85,7 @@ Post.get = function get(callback) {
         }
         var images = [];
         docs.forEach(function(doc, index) {
-          var image = new Post(doc.filename, doc.tag, doc.time);
+          var image = new Post(doc.filename, doc.category, doc.tag, doc.time);
           images.push(image);
         });
         callback(null, images);

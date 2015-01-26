@@ -3,10 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Indie Flower')
-    link(rel="stylesheet" href="stylesheets/lightbox.css")
-    link(rel="stylesheet" href="stylesheets/mycss.css")
-    script(src="javascripts/jquery-2.1.1.js")
-    script(src="javascripts/lightbox.js")
+    link(rel="stylesheet" href="/stylesheets/lightbox.css")
+    link(rel="stylesheet" href="/stylesheets/mycss.css")
+    script(src="/javascripts/jquery-2.1.1.js")
+    script(src="/javascripts/lightbox.js")
 
   body
     header
@@ -15,13 +15,13 @@ html
         p.lead Choose image to delete.
         a(href= "/" class="lead") back to Gallery
 
-    form(method="post" action="api/delete")
+    form(method="post" action="/#{title.toLowerCase()}/api/delete")
       .image-set
         ul
           each image, index in images
             li
               input(type="checkbox" name="delete" value=image.filename)
-              img(src='uploads/' + image.filename)
+              img(src='/uploads/' + image.filename)
               p #{image.filename}
               p #{image.time}
         input(type="submit" class="button")
