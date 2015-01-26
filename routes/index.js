@@ -5,13 +5,33 @@ var settings = require('../settings.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  console.log(req.originalUrl);
+  res.render('index', {});
+});
+
+router.get('/anime', function(req, res) {
   Post.get(function(err, images) {
     console.log(images);
-    res.render('index', { title: 'Anime Images',
-                          images: images}); 
+    res.render('gallery', { title: 'Anime',
+                            images: images}); 
   }); 
 });
+
+router.get('/scenery', function(req, res) {
+  Post.get(function(err, images) {
+    console.log(images);
+    res.render('gallery', { title: 'Scenery',
+                            images: images}); 
+  }); 
+});
+
+router.get('/daily', function(req, res) {
+  Post.get(function(err, images) {
+    console.log(images);
+    res.render('gallery', { title: 'Daily',
+                            images: images}); 
+  }); 
+});
+
 
 router.get('/delete', function(req, res) {
   Post.get(function(err, images) {

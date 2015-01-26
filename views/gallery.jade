@@ -11,8 +11,8 @@ html
   body
     header
       .container
-        h1.logo Anime
-        p.lead Anime pictures & images!
+        h1.logo #{title}
+        p.lead #{title} pictures & images!
       
       form(method="post" action="api/photo" enctype="multipart/form-data")
         input(type="file" name="fileUploaded")
@@ -24,7 +24,6 @@ html
           a(href='uploads/' + image.filename data-lightbox="roadtrip")
             img(src='uploads/' + image.filename)
     
-
     footer
       .container
         p
