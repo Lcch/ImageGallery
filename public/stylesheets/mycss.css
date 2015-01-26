@@ -1,37 +1,60 @@
 /* list */
+#container {
+  /* center */
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  /* position */
+  display: block;
+  position: relative;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 600px;
+  height: auto;
+}
 
-ul {
+ul.slides{
+  text-align: center;
+}
+
+
+
+.image-set ul {
   list-style-type: none;
   width: 500px;
 }
  
-li input {
+.image-set li input {
     float: left;
     margin: 0 15px 0 0;
 }
 
-li img {
+.image-set li img {
   float: left;
   margin: 0 15px 0 0;
   width: 100px;
 }
  
-li p {
+.image-set li p {
   font-family: 'Indie Flower', serif;
   margin: 2px 0 0 0;
 }
  
-li {
+.image-set li {
   padding: 10px;
   overflow: auto;
 }
  
-li:hover {
+.image-set li:hover {
   background: #eee;
   cursor: pointer;
 }
 
-ul {
+.image-set ul {
     position: relative;
     text-align: left;
 }
@@ -63,10 +86,9 @@ header p {
 
 
 footer {
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     background-color: #E2E2E2;
     text-align: center;
-    font-size: 1.7rem;
     font-family: 'Indie Flower', serif;
 }
 
@@ -84,13 +106,13 @@ h1.logo {
     line-height: 1.2em;
     font-family: 'Indie Flower', serif;
     font-weight: 800;
-    font-size: 6.0rem;
+    font-size: 4.0rem;
     margin: 0 0 0.2em 0;
 }
 
 .lead {
     max-width: 45rem;
-    font-size: 2.0rem;
+    font-size: 1.25rem;
     font-family: 'Indie Flower', serif;
 }
 
@@ -103,10 +125,10 @@ h1.logo {
 
 .single-image {
     position: relative;
-    margin: 18px;
+    margin: 5px;
     display: inline-block;
-    width: 300px;
-    height: 200px;
+    width: 200px;
+    height: 150px;
 }
 
 .single-image img { 
@@ -119,7 +141,6 @@ h1.logo {
     max-height: 100%;
     margin: auto;
     display: block;
-
 
     box-shadow: 5px 5px 3px #ccc;
 }
