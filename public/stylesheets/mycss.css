@@ -142,21 +142,21 @@ wrapper {
 }
 
 .item {
-    margin-bottom: 4px;
+    margin-bottom: 7px;
 }
 
 .pin {
     padding: 0px 0 0px 0;
-    width: 260px;
+    width: 258px;
     text-align: center;
     background-color: #EAEEF3;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 .pin .des {
-    padding: 1px 4px 2px 4px;
+    padding: 3px 7px 3px 9px;
     margin: 0 auto;
     text-align: left;
 }
@@ -164,13 +164,13 @@ wrapper {
 .pin .des p {
     margin: 0 auto;
     font-size: 11px;
-    font-family: 'Lato';
+    font-family: ;
 }
 
 .pin .des p.ptitle {
     margin: 0 auto;
     font-size: 12px;
-    font-family: 'Lato';
+    font-family: 'Helvetica Neue','Helvetica','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo','ＭＳ Ｐゴシック',arial,sans-serif;
 }
 
 
@@ -179,12 +179,12 @@ wrapper {
 }
 
 .pin .single-image img {
-    -webkit-border-top-left-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-    -moz-border-radius-topleft: 4px;
-    -moz-border-radius-topright: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 
     max-width: 100%;
     max-height: 100%;

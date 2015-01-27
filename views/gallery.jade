@@ -54,9 +54,11 @@ html
           p(class="formlead") Upload Image
           
           form(method="post" action="#{title.toLowerCase()}/api/photo" enctype="multipart/form-data" class="form-horizontal")
-            .form-group
-              .col-sm
-                input(type="text" class="form-control" name="caption" id="caption" placeholder="Caption")
+            //
+              .form-group
+                .col-sm
+                  input(type="text" class="form-control" name="caption" id="caption" placeholder="Caption")
+              
             .form-group
               .col-sm
                 input(type="text" class="form-control" name="description" id="description" placeholder="Description")
@@ -79,12 +81,8 @@ html
                     img(src='uploads/' + image.filename)
 
                 .des
-                  if image.caption && image.description
-                    if image.caption
-                      p(class="ptitle").
-                        CAPTION: #{image.caption}
-                    if image.description
-                      p #{image.description}
+                  if image.description
+                    p #{image.description}
                       
     footer
       .container
