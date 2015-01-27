@@ -7,6 +7,22 @@ html
     link(rel="stylesheet" href= "stylesheets/mycss.css")
     script(src= "javascripts/jquery-2.1.1.js")
     script(src= "javascripts/lightbox.js")
+    script(src="javascripts/masonry.pkgd.js")
+    script(src="javascripts/imagesloaded.pkgd.js")
+    script.
+      $(document).ready(function() {
+        var container = $('#container');
+        console.log(container);
+        var msnry = new Masonry( container[0], {
+          // options...
+          itemSelector: '.item',
+          columnWidth: 204,
+          isFitWidth: false
+        });
+        imagesLoaded(container[0], function() {
+          msnry.layout();
+        });
+      });
 
   body
     header
@@ -19,14 +35,22 @@ html
         input(type="submit")
 
     .image-set
-      each image, index in images
-        .single-image
-          a(href='uploads/' + image.filename data-lightbox="roadtrip")
-            img(src='uploads/' + image.filename)
-    
+      wrapper
+        div(id="container" class="js-masonry"
+    data-masonry-options='{ "columnWidth": 204, "itemSelector": ".item" }')
+          each image, index in images
+            .item
+              .pin
+                .single-image
+                  a(href='uploads/' + image.filename data-lightbox="roadtrip")
+                    img(src='uploads/' + image.filename)
+                .des
+                  p Hello World!
+        
     footer
       .container
         p
           a(href="/") Back to Homepage
           br
-          a(href="#{title.toLowerCase()}/delete" style="color: grey; font-size: 20px") click here to delete image 
+          a(href="#{title.toLowerCase()}/delete" style="color: #9A3334; font-size: 20px") click here to delete image 
+
