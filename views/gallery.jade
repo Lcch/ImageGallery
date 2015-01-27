@@ -3,7 +3,9 @@ html
   head
     title= title
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Indie Flower')
+    link(type='text/css' href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet')
     link(rel="stylesheet" href= "stylesheets/lightbox.css")
+    link(rel="stylesheet" href= "stylesheets/bootstrap.min.css")
     link(rel="stylesheet" href= "stylesheets/mycss.css")
     script(src= "javascripts/jquery-2.1.1.js")
     script(src= "javascripts/lightbox.js")
@@ -16,13 +18,31 @@ html
         var msnry = new Masonry( container[0], {
           // options...
           itemSelector: '.item',
-          columnWidth: 204,
+          columnWidth: 265,
           isFitWidth: false
         });
         imagesLoaded(container[0], function() {
           msnry.layout();
         });
+
+        var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+        var fileInput = $(':file').wrap(wrapper);
+        console.log(fileInput);
+
+        fileInput.change(function(){
+            $this = $(this);
+            if ($this.val() === '') {
+              $('#file').text('CHOOSE FILE');
+            } else {
+              $('#file').text($this.val());
+            }
+        })
+
+        $('#file').click(function(){
+          fileInput.click();
+        }).show();
       });
+
 
   body
     header
@@ -30,23 +50,42 @@ html
         h1.logo #{title}
         p.lead #{title} pictures & images!
       
-      form(method="post" action="#{title.toLowerCase()}/api/photo" enctype="multipart/form-data")
-        input(type="file" name="fileUploaded")
-        input(type="submit")
+        div(class="well well-lg")
+          p(class="formlead") Upload Image
+          
+          form(method="post" action="#{title.toLowerCase()}/api/photo" enctype="multipart/form-data" class="form-horizontal")
+            .form-group
+              .col-sm
+                input(type="text" class="form-control" name="caption" id="caption" placeholder="Caption")
+            .form-group
+              .col-sm
+                input(type="text" class="form-control" name="description" id="description" placeholder="Description")
+            div(class="btn btn-warning")
+              #file CHOOSE FILE
+              input(type="file" name="fileUploaded")
+            br
+            br
+            input(type="submit" class="btn btn-default" value="SUBMIT")
 
     .image-set
       wrapper
         div(id="container" class="js-masonry"
-    data-masonry-options='{ "columnWidth": 204, "itemSelector": ".item" }')
+    data-masonry-options='{ "columnWidth": 265, "itemSelector": ".item" }')
           each image, index in images
             .item
               .pin
                 .single-image
                   a(href='uploads/' + image.filename data-lightbox="roadtrip")
                     img(src='uploads/' + image.filename)
+
                 .des
-                  p Hello World!
-        
+                  if image.caption && image.description
+                    if image.caption
+                      p(class="ptitle").
+                        CAPTION: #{image.caption}
+                    if image.description
+                      p #{image.description}
+                      
     footer
       .container
         p

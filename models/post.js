@@ -4,8 +4,8 @@ function Post(filename, category, tag, caption, description, time) {
   this.filename = filename;
   this.category = category;
   this.tag = tag;
-  this.caption = caption || "Image";
-  this.description = description || "image";
+  this.caption = caption;
+  this.description = description;
   this.time = time || new Date();
 };
 

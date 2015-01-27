@@ -1,4 +1,9 @@
 /* list */
+.col-sm {
+    width: 80%;
+    margin: 0 auto;
+}
+
 #containerSlide {
   /* center */
   margin-top: 50px;
@@ -110,7 +115,14 @@ h1.logo {
 .lead {
     color: #9A3334;
     max-width: 45rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-family: 'Indie Flower', serif;
+}
+
+.formlead {
+    color: #772354;
+    max-width: 45rem;
+    font-size: 2.3rem;
     font-family: 'Indie Flower', serif;
 }
 
@@ -135,23 +147,32 @@ wrapper {
 
 .pin {
     padding: 0px 0 0px 0;
-    width: 200px;
+    width: 260px;
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #EAEEF3;
     -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .pin .des {
+    padding: 1px 4px 2px 4px;
     margin: 0 auto;
     text-align: left;
 }
 
 .pin .des p {
-    padding: 0px 2px 2px 2px;
     margin: 0 auto;
-    font-size: 10px;
-    font-family: 'Helvetica Neue','Helvetica','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo','ＭＳ Ｐゴシック',arial,sans-serif;
+    font-size: 11px;
+    font-family: 'Lato';
 }
+
+.pin .des p.ptitle {
+    margin: 0 auto;
+    font-size: 12px;
+    font-family: 'Lato';
+}
+
 
 .pin .single-image {
     margin: 0 auto;

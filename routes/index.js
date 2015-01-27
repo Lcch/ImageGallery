@@ -61,6 +61,8 @@ router.post('/daily/api/delete', deletePhoto('Daily'));
 function uploadPhoto(category) {
   return function(req, res) {
           if (req.files && req.files.fileUploaded) {
+            var caption = req.body.caption;
+            var description = req.body.description;
             var mimetype = req.files.fileUploaded.mimetype;
             if (mimetype === 'image/jpeg' ||
                 mimetype === 'image/png') {
@@ -68,7 +70,9 @@ function uploadPhoto(category) {
               console.log(post_filename);
               var post = new Post(post_filename,
                                   category.toLowerCase(),
-                                  [category.toLowerCase()]);
+                                  [category.toLowerCase()],
+                                  caption,
+                                  description);
               post.save(function(err) {
                 if (err) {
                   req.flash('error', err);
@@ -78,6 +82,9 @@ function uploadPhoto(category) {
                 res.redirect('/' + category.toLowerCase());
               });
             }
+          } else {
+            console.log('upload fail');
+            res.redirect('/' + category.toLowerCase());
           }
          };
 };
