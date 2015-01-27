@@ -105,7 +105,7 @@ html[xmlns] .slides {display: block;}
     position:relative;
 }
 
-#container .slides .flex-caption {
+#containerSlide .slides .flex-caption {
     position: absolute;
     bottom: 0;
     left:0;
@@ -113,10 +113,9 @@ html[xmlns] .slides {display: block;}
     margin: 0;
     padding: 10px;
     color: white;
-		opacity:0.5;
+	opacity:0.5;
     background: #000; /* whatever you want */  
-
-		font-family: 'Indie Flower', serif;    
+	font-family: 'Indie Flower', serif;    
 }
 
 
