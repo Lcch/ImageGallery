@@ -61,11 +61,14 @@ router.post('/daily/api/delete', deletePhoto('Daily'));
 function uploadPhoto(category) {
   return function(req, res) {
           if (req.files && req.files.fileUploaded) {
+            console.log(req.files.fileUploaded);
+
             var caption = req.body.caption;
             var description = req.body.description;
             var mimetype = req.files.fileUploaded.mimetype;
             if (mimetype === 'image/jpeg' ||
-                mimetype === 'image/png') {
+                mimetype === 'image/png' ||
+                mimetype === 'image/jpg') {
               var post_filename = req.files.fileUploaded.name;
               console.log(post_filename);
               var post = new Post(post_filename,

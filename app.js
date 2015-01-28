@@ -24,7 +24,7 @@ app.use(multer({
         }
     },
     onFileUploadComplete:function(file) {
-        console.log("upload complete");
+        console.log("upload complete", file.size);
     }
 }));
 
