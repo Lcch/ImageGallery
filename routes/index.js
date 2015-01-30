@@ -25,6 +25,8 @@ function getGallery(category) {
 router.get('/anime', getGallery('Anime'));
 router.get('/scenery', getGallery('Scenery'));
 router.get('/daily', getGallery('Daily'));
+router.get('/funny', getGallery('Funny'));
+router.get('/pretty', getGallery('Pretty'));
 
 function deletePhotoPage(category) {
   return function(req, res) {
@@ -43,6 +45,8 @@ function deletePhotoPage(category) {
 router.get('/anime/delete', deletePhotoPage('Anime'));
 router.get('/scenery/delete', deletePhotoPage('Scenery'));
 router.get('/daily/delete', deletePhotoPage('Daily'));
+router.get('/funny/delete', deletePhotoPage('Funny'));
+router.get('/pretty/delete', deletePhotoPage('Pretty'));
 
 function deletePhoto(category) {
   return function(req, res) {
@@ -57,6 +61,8 @@ function deletePhoto(category) {
 router.post('/anime/api/delete', deletePhoto('Anime'));
 router.post('/scenery/api/delete', deletePhoto('Scenery'));
 router.post('/daily/api/delete', deletePhoto('Daily'));
+router.post('/funny/api/delete', deletePhoto('Funny'));
+router.post('/pretty/api/delete', deletePhoto('Pretty'));
 
 function uploadPhoto(category) {
   return function(req, res) {
@@ -68,7 +74,8 @@ function uploadPhoto(category) {
             var mimetype = req.files.fileUploaded.mimetype;
             if (mimetype === 'image/jpeg' ||
                 mimetype === 'image/png' ||
-                mimetype === 'image/jpg') {
+                mimetype === 'image/jpg' ||
+                mimetype === 'image/gif') {
               var post_filename = req.files.fileUploaded.name;
               console.log(post_filename);
               var post = new Post(post_filename,
@@ -94,5 +101,7 @@ function uploadPhoto(category) {
 router.post('/anime/api/photo', uploadPhoto('Anime'));
 router.post('/scenery/api/photo', uploadPhoto('Scenery'));
 router.post('/daily/api/photo', uploadPhoto('Daily'));
+router.post('/funny/api/photo', uploadPhoto('Funny'));
+router.post('/pretty/api/photo', uploadPhoto('Pretty'));
 
 module.exports = router;

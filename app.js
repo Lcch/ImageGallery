@@ -17,7 +17,8 @@ app.use(multer({
         var mt = file.mimetype;
         if (mt === 'image/png' ||
             mt === 'image/jpg' ||
-            mt === 'image/jpeg') {
+            mt === 'image/jpeg' ||
+            mt === 'image/gif') {
           return true;
         } else {
           return false;
