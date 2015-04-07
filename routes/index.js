@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Post = require('../models/post.js');
 var settings = require('../settings.js');
+var webutils = require('../models/webutils.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -103,5 +104,53 @@ router.post('/scenery/api/photo', uploadPhoto('Scenery'));
 router.post('/daily/api/photo', uploadPhoto('Daily'));
 router.post('/funny/api/photo', uploadPhoto('Funny'));
 router.post('/pretty/api/photo', uploadPhoto('Pretty'));
+
+function uploadPhotoByURL(category) {
+  return function(req, res) {
+          console.log(req.body.img_url);
+          img_url = req.body.img_url;
+          if (img_url !== undefined && img_url.length > 5) {
+            if (img_url.substring(0, 4) !== "http") {
+              img_url = "http://" + img_url;
+            }
+            webutils.url_download(img_url, function(err, img_file) {
+              if (err) {
+                console.log("err: ", err);
+                return res.redirect('/' + category.toLowerCase());
+              } else {
+                if (img_file.length > 2) {
+                  console.log(img_file);
+
+                  var caption = undefined;
+                  var description = undefined;
+                  var post = new Post(img_file,
+                                      category.toLowerCase(),
+                                      [category.toLowerCase()],
+                                      caption,
+                                      description);
+                  post.save(function(err) {
+                  if (err) {
+                    req.flash('error', err);
+                    return res.redirect('/' + category.toLowerCase()); 
+                  }
+                    console.log('success');
+                    res.redirect('/' + category.toLowerCase());
+                  }); 
+                } else {
+                  return res.redirect('/' + category.toLowerCase());
+                }
+              }
+            });
+          } else {
+            return res.redirect('/' + category.toLowerCase());
+          } 
+         };
+};
+router.post('/anime/api/url_photo', uploadPhotoByURL('Anime'));
+router.post('/scenery/api/url_photo', uploadPhotoByURL('Scenery'));
+router.post('/daily/api/url_photo', uploadPhotoByURL('Daily'));
+router.post('/funny/api/url_photo', uploadPhotoByURL('Funny'));
+router.post('/pretty/api/url_photo', uploadPhotoByURL('Pretty'));
+
 
 module.exports = router;
