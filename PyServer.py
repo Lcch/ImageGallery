@@ -2,7 +2,6 @@ import sys
 import os
 import re
 import webutils
-import click
 import socket
 import http.server
 import socketserver
@@ -92,27 +91,6 @@ def main():
   httpd = socketserver.TCPServer(("localhost", PORT), myHandle)
   print("serving at port", PORT)
   httpd.serve_forever()
-
-def main_socket():
-    skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    skt.bind(('localhost', 1234))
-    skt.listen(5)
-    
-    while True: # This will loop forever
-      connection, addrress = skt.accept() # The program blocks here
-      print("Someone has connected")
-      
-      while True: # While somebody is connected
-        data = connection.recv(1024) # Try to read 16 bytes.
-        if len(data) == 0 :
-          print("Disconnected...")
-          break
-        else :
-          # Got some data
-          # Do Stuff With it
-          print("Got Data: ", data)
-    connection.close() # Close Connection
-
 
 if __name__ == "__main__":
     main()
