@@ -113,6 +113,15 @@ function uploadPhotoByURL(category) {
             if (img_url.substring(0, 4) !== "http") {
               img_url = "http://" + img_url;
             }
+
+            img_format = img_url.split('.')
+            img_format = img_format[img_format.length - 1].toLowerCase()
+            console.log(img_format)
+            if (img_format !== 'jpeg' && img_format !== 'png' &&
+                img_format !== 'jpg' && img_format !== 'gif') {
+              return res.redirect('/' + category.toLowerCase());
+            }
+
             webutils.url_download(img_url, function(err, img_file) {
               if (err) {
                 console.log("err: ", err);
