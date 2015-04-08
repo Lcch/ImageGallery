@@ -12,6 +12,7 @@ html
     script(src= "javascripts/lightbox.js")
     script(src="javascripts/masonry.pkgd.js")
     script(src="javascripts/imagesloaded.pkgd.js")
+    script(src="javascripts/jquery.leanModal.min.js")
     script.
       $(document).ready(function() {
         var container = $('#container');
@@ -47,15 +48,24 @@ html
         $("#img_url").change(function() {
           $('#blah_url').attr('src', $(this).val());
         });
+
+        $("#upload_img").leanModal({
+          overlay : 0.4,
+          closeButton: ".modal_close"
+        });
+        $("#upload_img_url").leanModal({
+          overlay : 0.4,
+          closeButton: ".modal_close"
+        });
       });
 
       function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#blah').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
       };
 
@@ -64,11 +74,17 @@ html
       .container
         h1.logo #{title}
         p.lead #{title} pictures & images!
-      
+        div(id="upload_marker_left")
+          a(class="btn btn-success" id="upload_img" href="#one") upload by file
+        
+        div(id="upload_marker_right")
+          a(class="btn btn-success" id="upload_img_url" href="#two") upload by url
+        
       div(id="one")
         div(class="well well-lg")
+          a(class="modal_close" href="#") X
+
           p(class="formlead") Upload Image
-          
           form(method="post" action="#{title.toLowerCase()}/api/photo" enctype="multipart/form-data" class="form-horizontal")
             //
               .form-group
@@ -87,9 +103,12 @@ html
             br
             br
             input(type="submit" class="btn btn-default" value="SUBMIT")
+            
 
       div(id="two")
         div(class="well well-log")
+          a(class="modal_close" href="#") X
+
           p(class="formlead") Upload Image by URL
           form(method="post" action="#{title.toLowerCase()}/api/url_photo" enctype="multipart/form-data" class="form-horizontal")
             .form-group
