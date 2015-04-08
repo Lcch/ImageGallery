@@ -83,7 +83,7 @@ html
               input(type="file" name="fileUploaded" id="fileUploaded")
             br
             br
-            img(id="blah" src="img/upload.png" alt="your image")
+            img(id="blah" src="img/preview.png" alt="your image")
             br
             br
             input(type="submit" class="btn btn-default" value="SUBMIT")
@@ -94,8 +94,12 @@ html
           form(method="post" action="#{title.toLowerCase()}/api/url_photo" enctype="multipart/form-data" class="form-horizontal")
             .form-group
               .col-sm
+                input(type="text" class="form-control" name="description" id="description" placeholder="Description")
+            .form-group
+              .col-sm
                 input(type="text" class="form-control" name="img_url" id="img_url" placeholder="Image URL")
-            img(id="blah_url" src="img/upload.png" alt="your image")
+            
+            img(id="blah_url" src="img/preview.png" alt="your image")
             br
             br
             input(type="submit" class="btn btn-default" value="SUBMIT")

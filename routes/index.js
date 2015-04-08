@@ -131,7 +131,7 @@ function uploadPhotoByURL(category) {
                   console.log(img_file);
 
                   var caption = undefined;
-                  var description = undefined;
+                  var description = req.body.description;
                   var post = new Post(img_file,
                                       category.toLowerCase(),
                                       [category.toLowerCase()],
